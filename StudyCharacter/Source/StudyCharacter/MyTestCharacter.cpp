@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ï»¿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "MyTestCharacter.h"
@@ -25,7 +25,7 @@ AMyTestCharacter::AMyTestCharacter() {
 
 void AMyTestCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
-	//ÄÄÆ÷³ÍÆ®°¡ ÀÖ´ÂÁö Ã¼Å©
+	//ì»´í¬ë„ŒíŠ¸ê°€ ìžˆëŠ”ì§€ ì²´í¬
 	check(PlayerInputComponent);
 	PlayerInputComponent->BindAxis("MoveForward", this, &AMyTestCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AMyTestCharacter::MoveRight);

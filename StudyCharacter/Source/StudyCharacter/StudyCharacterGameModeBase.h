@@ -1,4 +1,4 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+ï»¿// Copyright Epic Games, Inc. All Rights Reserved.
 
 #pragma once
 
@@ -20,7 +20,7 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UMG Game")
 	UUserWidget* CurrentWidget;
 
-	//TSubclassOf = Å¸ÀÔÁ¦ÇÑ
+	//TSubclassOf = íƒ€ìž…ì œí•œ
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UMG Game")
 	TSubclassOf<UUserWidget> HUDWidget;
 };
