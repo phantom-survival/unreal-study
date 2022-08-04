@@ -26,4 +26,12 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+
+	void Attack_Melee();
+	void Attack_Melee_End();
+
+	UPROPERTY(EditDefaultsOnly, Category = Pawn)
+	UAnimMontage* Attack_Melee_Anim;
+
+	bool isDuringAttack;
 };

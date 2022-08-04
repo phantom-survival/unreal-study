@@ -32,3 +32,19 @@ void ABasicCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 
 }
 
+void ABasicCharacter::Attack_Melee()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("공격!"));
+	PlayAnimMontage(Attack_Melee_Anim, 1.0f);
+	isDuringAttack = true;
+
+	FTimerHandle TH_Attack_End;
+	GetWorldTimerManager().SetTimer(TH_Attack_End, this, 
+		&ABasicCharacter::Attack_Melee_End, 1.7f, false);
+}
+
+void ABasicCharacter::Attack_Melee_End()
+{
+	isDuringAttack = false;
+}
+
