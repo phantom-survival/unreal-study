@@ -31,7 +31,18 @@ public:
 	void Attack_Melee_End();
 
 	UPROPERTY(EditDefaultsOnly, Category = Pawn)
-	UAnimMontage* Attack_Melee_Anim;
+	UAnimMontage* Attack_Melee_Anim01;
+
+	UPROPERTY(EditDefaultsOnly, Category = Pawn)
+	UAnimMontage* Attack_Melee_Anim02;
+
+	UPROPERTY(EditDefaultsOnly, Category = Pawn)
+	UAnimMontage* Attack_Melee_Anim03;
+
+	UPROPERTY(EditDefaultsOnly, Category = Pawn)
+	UAnimMontage* Melee_Anim_Idle;
 
 	bool isDuringAttack;
+
+	int ComboAttackNum;
 };

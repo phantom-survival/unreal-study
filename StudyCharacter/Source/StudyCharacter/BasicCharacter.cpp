@@ -34,17 +34,37 @@ void ABasicCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 
 void ABasicCharacter::Attack_Melee()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("공격!"));
-	PlayAnimMontage(Attack_Melee_Anim, 1.0f);
-	isDuringAttack = true;
-
+	switch (ComboAttackNum)
+	{
+	case 0:
+		PlayAnimMontage(Attack_Melee_Anim01, 1.0f);
+		isDuringAttack = true;
+		ComboAttackNum++;
+		break;
+	case 1:
+		PlayAnimMontage(Attack_Melee_Anim02, 1.0f);
+		isDuringAttack = true;
+		ComboAttackNum++;
+		break;
+	case 2:
+		PlayAnimMontage(Attack_Melee_Anim03, 1.0f);
+		isDuringAttack = true;
+		ComboAttackNum++;
+		break;
+	default:
+		ComboAttackNum = 0;
+		break;
+	}
+	
 	FTimerHandle TH_Attack_End;
-	GetWorldTimerManager().SetTimer(TH_Attack_End, this, 
+	GetWorldTimerManager().SetTimer(TH_Attack_End, this,
 		&ABasicCharacter::Attack_Melee_End, 1.7f, false);
 }
 
 void ABasicCharacter::Attack_Melee_End()
 {
 	isDuringAttack = false;
+	//공격 후 공격 준비자세
+	//PlayAnimMontage(Melee_Anim_Idle, 1.0f);
+	ComboAttackNum = 0;
 }
-
