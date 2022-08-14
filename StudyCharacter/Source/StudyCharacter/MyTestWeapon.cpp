@@ -44,3 +44,17 @@ void AMyTestWeapon::OnEquip(const AMyTestWeapon* LastWeapon)
 {
 	AttachMeshToPawn();
 }
+
+void AMyTestWeapon::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+}
+
+void AMyTestWeapon::NotifyActorBeginOverlap(AActor* OtherActor)
+{
+	if (OtherActor->IsA(AActor::StaticClass()) && MyPawn->isDuringAttack && OtherActor != MyPawn)
+	{
+		UGameplayStatics::ApplyDamage(OtherActor, 30.f, NULL, this, UDamageType::StaticClass());
+		GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red, "ApplyDamage!");
+	}
+}

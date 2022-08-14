@@ -47,6 +47,12 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = Inventory)
 	TArray<TSubclassOf<class AMyTestWeapon>>DefaultInventoryClasses;
 
+	virtual void OnHit(float DamageTaken, struct FDamageEvent const& DamageEvent, class APawn* PawnInstigator, class AActor* DamageCauser);
+
+	virtual void Die(float KillingDamage, struct FDamageEvent const& DamageEvent, class AController* Killer, class AActor* DamageCauser);
+
+	void DeathAnimationEnd();
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -57,6 +63,9 @@ public:
 	void Attack_Anim(UAnimMontage* AnimMontage);
 	void Attack_Melee();
 	void Attack_Melee_End();
+
+	UPROPERTY(EditDefaultsOnly, Category = Pawn)
+	UAnimMontage* AttackCombo_AnimMt;
 
 	UPROPERTY(EditDefaultsOnly, Category = Pawn)
 	UAnimMontage* Attack_Melee_Anim01;
@@ -81,8 +90,6 @@ public:
 	bool isDuringAttack;
 
 	int ComboAttackNum;
-
-	virtual void OnHit(float DamageTaken, struct FDamageEvent const& DamageEvent, class APawn* PawnInstigator, class AActor* DamageCauser);
 
 	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 };

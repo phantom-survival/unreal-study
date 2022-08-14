@@ -46,6 +46,7 @@ void AMyTestCharacter::MoveForward(float value)
 		const FRotator YawRot(0, Rot.Yaw, 0);
 		const FVector Direction = FRotationMatrix(YawRot).GetUnitAxis(EAxis::X);
 		AddMovementInput(Direction, value);
+		ComboAttackNum = 1;
 	}
 }
 
@@ -56,5 +57,6 @@ void AMyTestCharacter::MoveRight(float value)
 		const FRotator YawRot(0, Rot.Yaw, 0);
 		const FVector Direction = FRotationMatrix(YawRot).GetUnitAxis(EAxis::Y);
 		AddMovementInput(Direction, value);
+		ComboAttackNum = 1;
 	}
 }
