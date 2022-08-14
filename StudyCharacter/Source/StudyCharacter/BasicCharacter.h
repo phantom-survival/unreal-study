@@ -75,6 +75,8 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = Pawn)
 	UAnimMontage* Attack_Melee_Anim03;
+	
+	TArray<UAnimMontage*> AnimArr;
 
 	TArray<UAnimMontage*> AnimArr;
 
