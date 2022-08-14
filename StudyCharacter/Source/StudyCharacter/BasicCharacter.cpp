@@ -24,26 +24,23 @@ void ABasicCharacter::BeginPlay()
 void ABasicCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 // Called to bind functionality to input
 void ABasicCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
 }
 
 void ABasicCharacter::Attack_Anim(UAnimMontage* AnimMontage)
 {
 	PlayAnimMontage(AnimMontage, 1.0f);
 	isDuringAttack = true;
-	ComboAttackNum++;
 }
 
 void ABasicCharacter::Attack_Melee()
 {
-	Attack_Anim(AnimArr[ComboAttackNum]);
+	Attack_Anim(AnimArr[ComboAttackNum++]);
 	if (ComboAttackNum > 2) {
 		ComboAttackNum = 0;
 	}
