@@ -15,7 +15,9 @@ ABasicCharacter::ABasicCharacter()
 void ABasicCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	AnimArr.Emplace(Attack_Melee_Anim01);
+	AnimArr.Emplace(Attack_Melee_Anim02);
+	AnimArr.Emplace(Attack_Melee_Anim03);
 }
 
 // Called every frame
@@ -41,22 +43,10 @@ void ABasicCharacter::Attack_Anim(UAnimMontage* AnimMontage)
 
 void ABasicCharacter::Attack_Melee()
 {
-	switch (ComboAttackNum)
-	{
-	case 0:
-		Attack_Anim(Attack_Melee_Anim01);
-		break;
-	case 1:
-		Attack_Anim(Attack_Melee_Anim02);
-		break;
-	case 2:
-		Attack_Anim(Attack_Melee_Anim03);
-		break;
-	default:
+	Attack_Anim(AnimArr[ComboAttackNum]);
+	if (ComboAttackNum > 2) {
 		ComboAttackNum = 0;
-		break;
 	}
-	
 	FTimerHandle TH_Attack_End;
 	GetWorldTimerManager().SetTimer(TH_Attack_End, this,
 		&ABasicCharacter::Attack_Melee_End, 1.7f, false);
