@@ -23,6 +23,12 @@ AMyTestCharacter::AMyTestCharacter() {
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 }
 
+void AMyTestCharacter::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();
+	SpawndefaultInventory();
+}
+
 void AMyTestCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	//컴포넌트가 있는지 체크
