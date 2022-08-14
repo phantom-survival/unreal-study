@@ -32,24 +32,25 @@ void ABasicCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 
 }
 
+void ABasicCharacter::Attack_Anim(UAnimMontage* AnimMontage)
+{
+	PlayAnimMontage(AnimMontage, 1.0f);
+	isDuringAttack = true;
+	ComboAttackNum++;
+}
+
 void ABasicCharacter::Attack_Melee()
 {
 	switch (ComboAttackNum)
 	{
 	case 0:
-		PlayAnimMontage(Attack_Melee_Anim01, 1.0f);
-		isDuringAttack = true;
-		ComboAttackNum++;
+		Attack_Anim(Attack_Melee_Anim01);
 		break;
 	case 1:
-		PlayAnimMontage(Attack_Melee_Anim02, 1.0f);
-		isDuringAttack = true;
-		ComboAttackNum++;
+		Attack_Anim(Attack_Melee_Anim02);
 		break;
 	case 2:
-		PlayAnimMontage(Attack_Melee_Anim03, 1.0f);
-		isDuringAttack = true;
-		ComboAttackNum++;
+		Attack_Anim(Attack_Melee_Anim03);
 		break;
 	default:
 		ComboAttackNum = 0;
@@ -64,7 +65,4 @@ void ABasicCharacter::Attack_Melee()
 void ABasicCharacter::Attack_Melee_End()
 {
 	isDuringAttack = false;
-	//공격 후 공격 준비자세
-	//PlayAnimMontage(Melee_Anim_Idle, 1.0f);
-	ComboAttackNum = 0;
 }
