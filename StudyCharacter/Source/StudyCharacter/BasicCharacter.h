@@ -26,7 +26,7 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-
+	void Attack_Anim(UAnimMontage* AnimMontage);
 	void Attack_Melee();
 	void Attack_Melee_End();
 
@@ -38,6 +38,8 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = Pawn)
 	UAnimMontage* Attack_Melee_Anim03;
+	
+	TArray<UAnimMontage*>AnimArr;
 
 	UPROPERTY(EditDefaultsOnly, Category = Pawn)
 	UAnimMontage* Melee_Anim_Idle;
