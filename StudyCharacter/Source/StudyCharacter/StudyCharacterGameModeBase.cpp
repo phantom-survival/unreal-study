@@ -3,19 +3,25 @@
 
 #include "StudyCharacterGameModeBase.h"
 #include "Blueprint/UserWidget.h"
-#include "HUD_InGame.h"
+#include "GameHUD_HUD.h"
+#include "UObject/ConstructorHelpers.h"
+#include "Controller_StartMenu.h"
 
 AStudyCharacterGameModeBase::AStudyCharacterGameModeBase()
 {
-	HUDClass = AHUD_InGame::StaticClass();
-	DefaultPawnClass = nullptr;
+	static ConstructorHelpers::FClassFinder<APawn> player(TEXT("/Game/_My/MyTestCharacter_BP"));
+	if (player.Succeeded())
+	{
+		DefaultPawnClass = player.Class;
+	}
+
+	HUDClass = AGameHUD_HUD::StaticClass();
+	PlayerControllerClass = AController_StartMenu::StaticClass();
 }
 
-void AStudyCharacterGameModeBase::BeginPlay() {
+void AStudyCharacterGameModeBase::BeginPlay() 
+{
 	Super::BeginPlay();
-
-	//CurrentWidget = CreateWidget<UUserWidget>(GetWorld(), HUDWidget);
-	//CurrentWidget->AddToViewport();
 
 	//ChangeUI();
 }
