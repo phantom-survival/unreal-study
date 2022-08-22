@@ -9,6 +9,15 @@
 /**
  * 
  */
+UENUM(BlueprintType)
+enum class EGameState :uint8
+{
+	GameStart,
+	GamePlay,
+	GamePause,
+	GameOver,
+};
+
 UCLASS()
 class STUDYCHARACTER_API AStudyCharacterGameModeBase : public AGameModeBase
 {
@@ -17,10 +26,22 @@ class STUDYCHARACTER_API AStudyCharacterGameModeBase : public AGameModeBase
 protected:
 	virtual void BeginPlay() override;
 
+	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UMG Game")
+	//UUserWidget* CurrentWidget;
+	//
+	////TSubclassOf = 타입제한
+	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UMG Game")
+	//TSubclassOf<UUserWidget> HUDWidget;
+
+	UPROPERTY(EditAnywhere, Category = "UMG Game")
+	EGameState gameStateEnum;
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UMG Game")
+	TSubclassOf<UUserWidget> HUDWidgetclass;
+
 	UUserWidget* CurrentWidget;
 
-	//TSubclassOf = 타입제한
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UMG Game")
-	TSubclassOf<UUserWidget> HUDWidget;
+public:
+	AStudyCharacterGameModeBase();
+	void ChangeUI();
 };

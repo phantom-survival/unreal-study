@@ -196,6 +196,9 @@ void ABasicCharacter::Die(float KillingDamage, FDamageEvent const& DamageEvent, 
 		GetCharacterMovement()->DisableMovement();
 
 	}
+
+	GetMesh()->SetCollisionProfileName("Ragdoll");
+	GetMesh()->SetSimulatePhysics(true);
 	
 	if (Controller != NULL)
 	{
