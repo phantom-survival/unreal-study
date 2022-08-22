@@ -7,8 +7,7 @@
 void AStudyCharacterGameModeBase::BeginPlay() {
 	Super::BeginPlay();
 
-	CurrentWidget = CreateWidget<UUserWidget>(GetWorld(), HUDWidget);
-	CurrentWidget->AddToViewport();
+	//CurrentWidget = CreateWidget<UUserWidget>(GetWorld(), HUDWidget);
+	//CurrentWidget->AddToViewport();
 
 }
-

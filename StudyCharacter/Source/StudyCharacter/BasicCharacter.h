@@ -21,6 +21,7 @@ public:
 
 	void EquipWeapon(class AMyTestWeapon* Weapon);
 
+	//HP
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = MyState)
 	float myHealth;
 
@@ -53,6 +54,8 @@ protected:
 
 	void DeathAnimationEnd();
 
+	class UWidgetComponent* Widget_Component;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -68,17 +71,6 @@ public:
 	UAnimMontage* AttackCombo_AnimMt;
 
 	UPROPERTY(EditDefaultsOnly, Category = Pawn)
-	UAnimMontage* Attack_Melee_Anim01;
-
-	UPROPERTY(EditDefaultsOnly, Category = Pawn)
-	UAnimMontage* Attack_Melee_Anim02;
-
-	UPROPERTY(EditDefaultsOnly, Category = Pawn)
-	UAnimMontage* Attack_Melee_Anim03;
-
-	TArray<UAnimMontage*> AnimArr;
-
-	UPROPERTY(EditDefaultsOnly, Category = Pawn)
 	UAnimMontage* Melee_Anim_Idle;
 
 	UPROPERTY(EditDefaultsOnly, Category = Pawn)
@@ -92,4 +84,9 @@ public:
 	int ComboAttackNum;
 
 	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
+
+	//HP관련
+	float get_Health()const;
+	float get_maxHealth()const;
+	void set_health(float const new_health);
 };
