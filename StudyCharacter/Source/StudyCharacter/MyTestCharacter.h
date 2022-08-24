@@ -48,6 +48,8 @@ class STUDYCHARACTER_API AMyTestCharacter : public ABasicCharacter
 public:
 	AMyTestCharacter();
 
+	virtual void PostInitializeComponents() override;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 	class USpringArmComponent* CameraBoom;
 
