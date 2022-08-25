@@ -41,6 +41,9 @@ ABasicCharacter::ABasicCharacter()
 			Widget_Component->SetWidgetClass(widget_class.Class);
 		}
 	}
+
+	MyCharacterName = "Name : 권혁우";
+	myCharacterLevelText = "Level : 333";
 }
 
 USkeletalMeshComponent* ABasicCharacter::GetSpecificPawnMesh() const
@@ -125,7 +128,7 @@ void ABasicCharacter::Tick(float DeltaTime)
 		uw->set_bar_value_percent(myHPnum);
 	}
 
-	UGameplayStatics::ApplyDamage(this, 0.5f, NULL, this, UDamageType::StaticClass());
+	//UGameplayStatics::ApplyDamage(this, 0.5f, NULL, this, UDamageType::StaticClass());
 }
 
 // Called to bind functionality to input

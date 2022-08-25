@@ -18,8 +18,10 @@ public:
 	AController_StartMenu();
 
 	void ShowGameMenu();
+	void ShowInventory();
 	void WeaponAttack();
 	void ShowDieUI();
+	void CloseGameMenu();
 
 protected:
 	void SetupInputComponent() override;

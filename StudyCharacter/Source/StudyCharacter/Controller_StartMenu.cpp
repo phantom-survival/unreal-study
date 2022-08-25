@@ -50,7 +50,15 @@ void AController_StartMenu::ShowGameMenu()
 	{
 		uiGameMenuWidget->AddToViewport();
 	}
+}
 
+void AController_StartMenu::ShowInventory()
+{
+	uiGameMenuWidget = CreateWidget<UUserWidget>(GetWorld(), uiGameMenuBPClass);
+	if (uiGameMenuWidget)
+	{
+		uiGameMenuWidget->AddToViewport();
+	}
 }
 
 void AController_StartMenu::WeaponAttack()
@@ -67,6 +75,12 @@ void AController_StartMenu::ShowDieUI()
 		if (uiGameDieWidget)
 		{
 			uiGameDieWidget->AddToViewport();
+			bShowMouseCursor = true;
 		}
 	}
+}
+
+void AController_StartMenu::CloseGameMenu()
+{
+	uiGameMenuWidget->RemoveFromViewport();
 }

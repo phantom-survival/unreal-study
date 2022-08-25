@@ -26,13 +26,6 @@ class STUDYCHARACTER_API AStudyCharacterGameModeBase : public AGameModeBase
 protected:
 	virtual void BeginPlay() override;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UMG Game")
-	//UUserWidget* CurrentWidget;
-	//
-	////TSubclassOf = 타입제한
-	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UMG Game")
-	//TSubclassOf<UUserWidget> HUDWidget;
-
 	UPROPERTY(EditAnywhere, Category = "UMG Game")
 	EGameState gameStateEnum;
 
@@ -43,5 +36,4 @@ protected:
 
 public:
 	AStudyCharacterGameModeBase();
-	void ChangeUI();
 };

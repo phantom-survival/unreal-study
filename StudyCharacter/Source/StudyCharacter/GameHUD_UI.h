@@ -32,11 +32,17 @@ protected:
 	UButton* Btn_GameMenu = nullptr;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
+	UButton* Btn_Inventory = nullptr;
+
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
 	UButton* Btn_Attack = nullptr;
 
 private:
 	UFUNCTION()
 	void Btn_GameMenu_Clicked();
+
+	UFUNCTION()
+	void Btn_Inventory_Clicked();
 
 	UFUNCTION()
 	void Btn_Attack_Clicked();

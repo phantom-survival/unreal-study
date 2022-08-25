@@ -22,12 +22,4 @@ AStudyCharacterGameModeBase::AStudyCharacterGameModeBase()
 void AStudyCharacterGameModeBase::BeginPlay() 
 {
 	Super::BeginPlay();
-
-	//ChangeUI();
-}
-
-void AStudyCharacterGameModeBase::ChangeUI()
-{
-	CurrentWidget = CreateWidget<UUserWidget>(GetWorld(), HUDWidgetclass);
-	CurrentWidget->AddToViewport();
 }
