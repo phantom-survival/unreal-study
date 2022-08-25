@@ -36,7 +36,7 @@ void UGameHUD_UI::Btn_GameMenu_Clicked()
 void UGameHUD_UI::Btn_Inventory_Clicked()
 {
 	AController_StartMenu* contoller = Cast<AController_StartMenu>(GetOwningPlayer());
-	contoller->ShowGameMenu();
+	contoller->ShowInventory();
 }
 
 void UGameHUD_UI::Btn_Attack_Clicked()
