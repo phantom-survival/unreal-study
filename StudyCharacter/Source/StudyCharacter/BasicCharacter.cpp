@@ -30,7 +30,7 @@ ABasicCharacter::ABasicCharacter()
 		Widget_Component->SetupAttachment(RootComponent);
 		Widget_Component->SetWidgetSpace(EWidgetSpace::Screen);
 		Widget_Component->SetRelativeLocation(FVector(0.0f, 0.0f, 80.0f));
-		static ConstructorHelpers::FClassFinder<UUserWidget>widget_class(TEXT("/Game/_My/UI/HPbar_BP"));
+		static ConstructorHelpers::FClassFinder<UUserWidget> widget_class(TEXT("/Game/_My/UI/HPbar_BP"));
 
 		if (widget_class.Succeeded())
 		{

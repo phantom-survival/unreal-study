@@ -86,7 +86,7 @@ public:
 	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 
 	//HP관련
-	float get_Health()const;
-	float get_maxHealth()const;
+	float get_Health() const;
+	float get_maxHealth() const;
 	void set_health(float const new_health);
 };
