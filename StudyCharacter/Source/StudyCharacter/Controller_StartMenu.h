@@ -19,6 +19,7 @@ public:
 
 	void ShowGameMenu();
 	void WeaponAttack();
+	void ShowDieUI();
 
 protected:
 	void SetupInputComponent() override;
@@ -29,4 +30,7 @@ private:
 
 	TSubclassOf<class UUserWidget> uiGameMenuBPClass;
 	UUserWidget* uiGameMenuWidget;
+
+	TSubclassOf<class UUserWidget> uiGameDieBPClass;
+	UUserWidget* uiGameDieWidget;
 };

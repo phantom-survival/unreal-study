@@ -22,10 +22,19 @@ public:
 	void EquipWeapon(class AMyTestWeapon* Weapon);
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = MyState)
+	FName MyCharacterName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = MyState)
 	float myHealth;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = MyState)
 	float myMaxHealth;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float myHPnum;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FString myHPbarText;
 
 protected:
 	// Called when the game starts or when spawned
