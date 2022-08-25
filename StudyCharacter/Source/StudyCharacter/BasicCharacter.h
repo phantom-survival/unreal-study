@@ -21,7 +21,6 @@ public:
 
 	void EquipWeapon(class AMyTestWeapon* Weapon);
 
-	//HP
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = MyState)
 	float myHealth;
 
@@ -70,7 +69,6 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = Pawn)
 	UAnimMontage* AttackCombo_AnimMt;
 
-	UPROPERTY(EditDefaultsOnly, Category = Pawn)
 	UAnimMontage* Melee_Anim_Idle;
 
 	UPROPERTY(EditDefaultsOnly, Category = Pawn)
