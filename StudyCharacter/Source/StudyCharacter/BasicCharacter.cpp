@@ -7,20 +7,36 @@
 #include "MyTestWeapon.h"
 #include "Engine/World.h"
 #include "Kismet/GameplayStatics.h"
+#include "Components/WidgetComponent.h"
+#include "UObject/ConstructorHelpers.h"
+#include "Blueprint/UserWidget.h"
+#include "HPBar.h"
 #include "Engine.h"
 
 // Sets default values
 ABasicCharacter::ABasicCharacter()
+	:myHealth(myMaxHealth)
+	,Widget_Component(CreateDefaultSubobject<UWidgetComponent>(TEXT("HealthValue")))
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	isDuringAttack = false;
 	ComboAttackNum = 1;
-	myHealth = 0.f;
-	myMaxHealth = 100.0f;
 
-	myHealth = myMaxHealth;
+	//위젯 컴포넌트 위치세팅
+	if (Widget_Component)
+	{
+		Widget_Component->SetupAttachment(RootComponent);
+		Widget_Component->SetWidgetSpace(EWidgetSpace::Screen);
+		Widget_Component->SetRelativeLocation(FVector(0.0f, 0.0f, 80.0f));
+		static ConstructorHelpers::FClassFinder<UUserWidget> widget_class(TEXT("/Game/_My/UI/HPbar_BP"));
+
+		if (widget_class.Succeeded())
+		{
+			Widget_Component->SetWidgetClass(widget_class.Class);
+		}
+	}
 }
 
 //***************Weapon****************
@@ -88,6 +104,8 @@ void ABasicCharacter::SpawndefaultInventory()
 void ABasicCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+
+	myHealth = myMaxHealth;
 }
 
 //************************************
@@ -96,6 +114,12 @@ void ABasicCharacter::BeginPlay()
 void ABasicCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	//HPbar update
+	auto const uw = Cast<UHPbar>(Widget_Component->GetUserWidgetObject());
+	if (uw)
+	{
+		uw->set_bar_value_percent((myHealth / myMaxHealth) * 100 * 0.01f);
+	}
 }
 
 // Called to bind functionality to input
@@ -128,6 +152,7 @@ void ABasicCharacter::Attack_Melee()
 		PlayAnimMontage(AttackCombo_AnimMt, 1.f);
 		ComboAttackNum = 1;
 	}
+
 	FTimerHandle TH_Attack_End;
 	GetWorldTimerManager().SetTimer(TH_Attack_End, this,
 		&ABasicCharacter::Attack_Melee_End, 1.7f, false);
@@ -171,6 +196,9 @@ void ABasicCharacter::Die(float KillingDamage, FDamageEvent const& DamageEvent, 
 		GetCharacterMovement()->DisableMovement();
 
 	}
+
+	GetMesh()->SetCollisionProfileName("Ragdoll");
+	GetMesh()->SetSimulatePhysics(true);
 	
 	if (Controller != NULL)
 	{
@@ -215,4 +243,19 @@ float ABasicCharacter::TakeDamage(float Damage, FDamageEvent const& DamageEvent,
 	}
 
 	return myGetDamage;
+}
+
+float ABasicCharacter::get_Health() const
+{
+	return myHealth;
+}
+
+float ABasicCharacter::get_maxHealth() const
+{
+	return myMaxHealth;
+}
+
+void ABasicCharacter::set_health(float const new_health)
+{
+	myHealth = new_health;
 }

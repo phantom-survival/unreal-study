@@ -19,7 +19,7 @@ AMyTestWeapon::AMyTestWeapon(const class FObjectInitializer& ObjectInitializer):
 
 	WeaponCollision = CreateDefaultSubobject<UBoxComponent>(TEXT("WeaponCollision"));
 	WeaponCollision->SetBoxExtent(FVector(5.f, 5.f, 5.f));
-	WeaponCollision->AttachToComponent(WeaponMesh, FAttachmentTransformRules::KeepRelativeTransform, "DamageSoket");
+	WeaponCollision->AttachToComponent(WeaponMesh, FAttachmentTransformRules::KeepRelativeTransform, "DamageSocket");
 }
 
 void AMyTestWeapon::SetOwningPawn(ABasicCharacter* NewOwner)
