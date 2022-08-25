@@ -11,6 +11,8 @@
 #include "UObject/ConstructorHelpers.h"
 #include "Blueprint/UserWidget.h"
 #include "HPBar.h"
+#include "GameHUD_UI.h"
+#include "Controller_StartMenu.h"
 #include "Engine.h"
 
 // Sets default values
@@ -23,6 +25,8 @@ ABasicCharacter::ABasicCharacter()
 
 	isDuringAttack = false;
 	ComboAttackNum = 1;
+
+	myHPbarText = FString::SanitizeFloat(myHealth) + "/" + FString::SanitizeFloat(myMaxHealth);
 
 	//위젯 컴포넌트 위치세팅
 	if (Widget_Component)
@@ -38,8 +42,6 @@ ABasicCharacter::ABasicCharacter()
 		}
 	}
 }
-
-//***************Weapon****************
 
 USkeletalMeshComponent* ABasicCharacter::GetSpecificPawnMesh() const
 {
@@ -108,18 +110,22 @@ void ABasicCharacter::BeginPlay()
 	myHealth = myMaxHealth;
 }
 
-//************************************
-
 // Called every frame
 void ABasicCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	myHPnum = (myHealth / myMaxHealth) * 100 * 0.01f;
+	myHPbarText = FString::SanitizeFloat(myHealth) + "/" + FString::SanitizeFloat(myMaxHealth);
+
 	//HPbar update
 	auto const uw = Cast<UHPbar>(Widget_Component->GetUserWidgetObject());
+
 	if (uw)
 	{
-		uw->set_bar_value_percent((myHealth / myMaxHealth) * 100 * 0.01f);
+		uw->set_bar_value_percent(myHPnum);
 	}
+
+	UGameplayStatics::ApplyDamage(this, 0.5f, NULL, this, UDamageType::StaticClass());
 }
 
 // Called to bind functionality to input
@@ -145,14 +151,12 @@ void ABasicCharacter::Attack_Melee()
 		ComboAttackNum++;
 
 		isDuringAttack = true;
-
 	}
 	else
 	{
 		PlayAnimMontage(AttackCombo_AnimMt, 1.f);
 		ComboAttackNum = 1;
 	}
-
 	FTimerHandle TH_Attack_End;
 	GetWorldTimerManager().SetTimer(TH_Attack_End, this,
 		&ABasicCharacter::Attack_Melee_End, 1.7f, false);
@@ -233,8 +237,16 @@ float ABasicCharacter::TakeDamage(float Damage, FDamageEvent const& DamageEvent,
 
 	if (myHealth <= 0.0f)
 	{
-		PlayAnimMontage(Death_AnimMontage, 1.0f);
-		Die(myGetDamage, DamageEvent, EventInstigator, DamageCauser);
+		if (MyCharacterName == "Player")
+		{
+			AController_StartMenu* ctr = Cast<AController_StartMenu>(GetOwner());
+			ctr->ShowDieUI();
+		}
+		else
+		{
+			PlayAnimMontage(Death_AnimMontage, 1.0f);
+			Die(myGetDamage, DamageEvent, EventInstigator, DamageCauser);
+		}
 	}
 	else
 	{
