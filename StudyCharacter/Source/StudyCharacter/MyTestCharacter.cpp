@@ -35,7 +35,6 @@ void AMyTestCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	check(PlayerInputComponent);
 	PlayerInputComponent->BindAxis("MoveForward", this, &AMyTestCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AMyTestCharacter::MoveRight);
-
 	PlayerInputComponent->BindAction("Attack", IE_Released, this, &AMyTestCharacter::Attack_Melee);
 }
 

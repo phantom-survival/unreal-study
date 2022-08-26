@@ -21,6 +21,7 @@ public:
 	{
 		CharacterName = FText::FromString("Name");
 		CharacterLevel = 1;
+		CharacterGold = 100;
 		Description = FText::FromString("Your Character is ....");
 	}
 	
@@ -35,6 +36,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int32 CharacterLevel;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int32 CharacterGold;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FText Description;
@@ -55,6 +59,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 	class UCameraComponent* FollowCamera;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<int32> MyItemArray_ch;
 
 protected:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
