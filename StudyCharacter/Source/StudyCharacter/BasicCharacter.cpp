@@ -128,6 +128,7 @@ void ABasicCharacter::Tick(float DeltaTime)
 		uw->set_bar_value_percent(myHPnum);
 	}
 
+	//DieUI 확인을 위한 자해데미지
 	//UGameplayStatics::ApplyDamage(this, 0.5f, NULL, this, UDamageType::StaticClass());
 }
 
