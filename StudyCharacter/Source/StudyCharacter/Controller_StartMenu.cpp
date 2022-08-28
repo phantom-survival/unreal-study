@@ -33,6 +33,12 @@ AController_StartMenu::AController_StartMenu()
 	{
 		uiGameDieBPClass = DieUI.Class;
 	}
+
+	static ConstructorHelpers::FClassFinder<UUserWidget> inventoryUI(TEXT("/Game/_My/UI/Inventory_BP"));
+	if (inventoryUI.Succeeded())
+	{
+		uiGameInventoryBPClass = inventoryUI.Class;
+	}
 }
 
 void AController_StartMenu::SetupInputComponent()
@@ -40,6 +46,7 @@ void AController_StartMenu::SetupInputComponent()
 	APlayerController::SetupInputComponent();
 
 	InputComponent->BindAction("ShowGameMenu", IE_Pressed, this, &AController_StartMenu::ShowGameMenu);
+	InputComponent->BindAction("ShowInventory", IE_Pressed, this, &AController_StartMenu::ShowInventory);
 	InputComponent->BindAction("Attack", IE_Pressed, this, &AController_StartMenu::WeaponAttack);
 }
 
@@ -50,7 +57,6 @@ void AController_StartMenu::ShowGameMenu()
 	{
 		uiGameMenuWidget->AddToViewport();
 	}
-
 }
 
 void AController_StartMenu::WeaponAttack()
@@ -67,6 +73,26 @@ void AController_StartMenu::ShowDieUI()
 		if (uiGameDieWidget)
 		{
 			uiGameDieWidget->AddToViewport();
+			bShowMouseCursor = true;
 		}
 	}
+}
+
+void AController_StartMenu::ShowInventory()
+{
+	uiGameInventoryWidget = CreateWidget<UUserWidget>(GetWorld(), uiGameInventoryBPClass);
+	if (uiGameInventoryWidget)
+	{
+		uiGameInventoryWidget->AddToViewport();
+	}
+}
+
+void AController_StartMenu::CloseInventory()
+{
+	uiGameInventoryWidget->RemoveFromViewport();
+}
+
+void AController_StartMenu::CloseGameMenu()
+{
+	uiGameMenuWidget->RemoveFromViewport();
 }
