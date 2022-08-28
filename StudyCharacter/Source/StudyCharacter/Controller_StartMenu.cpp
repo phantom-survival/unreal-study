@@ -8,6 +8,8 @@
 
 AController_StartMenu::AController_StartMenu()
 {
+	isShowShopMenu = false;
+
 	static ConstructorHelpers::FClassFinder<UUserWidget> ui(TEXT("/Game/_My/UI/HUD"));
 	if (ui.Succeeded())
 	{
@@ -38,6 +40,12 @@ AController_StartMenu::AController_StartMenu()
 	if (inventoryUI.Succeeded())
 	{
 		uiGameInventoryBPClass = inventoryUI.Class;
+	}
+
+	static ConstructorHelpers::FClassFinder<UUserWidget> ShopUI(TEXT("/Game/_My/UI/Shop_BP"));
+	if (ShopUI.Succeeded())
+	{
+		uiGameShopBPClass = ShopUI.Class;
 	}
 }
 
@@ -87,9 +95,19 @@ void AController_StartMenu::ShowInventory()
 	}
 }
 
+void AController_StartMenu::ShowShopUI()
+{
+	isShowShopMenu = true;
+}
+
 void AController_StartMenu::CloseInventory()
 {
 	uiGameInventoryWidget->RemoveFromViewport();
+}
+
+void AController_StartMenu::CloseShopUI()
+{
+	isShowShopMenu = false;
 }
 
 void AController_StartMenu::CloseGameMenu()

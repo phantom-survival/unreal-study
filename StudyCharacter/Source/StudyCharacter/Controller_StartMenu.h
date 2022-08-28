@@ -19,10 +19,17 @@ public:
 
 	void ShowGameMenu();
 	void ShowInventory();
+	void ShowShopUI();
 	void WeaponAttack();
 	void ShowDieUI();
 	void CloseGameMenu();
-	void CloseInventory();	
+	void CloseInventory();
+
+	UFUNCTION(BlueprintCallable, Category = "MyUI")
+	void CloseShopUI();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool isShowShopMenu;
 	
 	TSubclassOf<class UUserWidget>uiItemSlotBPClass;
 	UUserWidget* uiItemSlotWidget;
@@ -42,4 +49,7 @@ private:
 
 	TSubclassOf<class UUserWidget> uiGameInventoryBPClass;
 	UUserWidget* uiGameInventoryWidget;
+
+	TSubclassOf<class UUserWidget>uiGameShopBPClass;
+	UUserWidget* uiGameShopWidget;
 };
