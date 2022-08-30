@@ -63,6 +63,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<int32> MyItemArray_ch;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<int32> MyShopArray_ch;
+
 protected:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	void MoveForward(float value);
