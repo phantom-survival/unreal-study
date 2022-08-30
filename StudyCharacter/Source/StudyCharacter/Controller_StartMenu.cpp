@@ -9,6 +9,7 @@
 AController_StartMenu::AController_StartMenu()
 {
 	isShowShopMenu = false;
+	isShowInventory = false;
 
 	static ConstructorHelpers::FClassFinder<UUserWidget> ui(TEXT("/Game/_My/UI/HUD"));
 	if (ui.Succeeded())
@@ -92,6 +93,7 @@ void AController_StartMenu::ShowInventory()
 	if (uiGameInventoryWidget)
 	{
 		uiGameInventoryWidget->AddToViewport();
+		isShowInventory = true;
 	}
 }
 
@@ -102,7 +104,7 @@ void AController_StartMenu::ShowShopUI()
 
 void AController_StartMenu::CloseInventory()
 {
-	uiGameInventoryWidget->RemoveFromViewport();
+	isShowInventory = false;
 }
 
 void AController_StartMenu::CloseShopUI()
