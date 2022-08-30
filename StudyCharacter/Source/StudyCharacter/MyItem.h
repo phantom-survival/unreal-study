@@ -22,22 +22,22 @@ public:
 	}
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		FName ItemID;
+	FName ItemID;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		FText ItemName;
+	FText ItemName;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		UTexture2D* ItemThumbnail;
+	UTexture2D* ItemThumbnail;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		int32 ItemLevel;
+	int32 ItemLevel;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		int32 ItemGold;
+	int32 ItemGold;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		FText Description;
+	FText Description;
 
 };
 

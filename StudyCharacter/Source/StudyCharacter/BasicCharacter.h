@@ -34,7 +34,7 @@ public:
 	float myHPnum;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FString myHPbarText;	
+	FString myHPbarText;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FString myCharacterNameText;
