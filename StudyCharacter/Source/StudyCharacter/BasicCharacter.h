@@ -35,6 +35,12 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FString myHPbarText;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FString myCharacterNameText;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FString myCharacterLevelText;
 
 protected:
 	// Called when the game starts or when spawned

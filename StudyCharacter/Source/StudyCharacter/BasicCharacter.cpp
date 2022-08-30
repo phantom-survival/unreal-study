@@ -125,7 +125,8 @@ void ABasicCharacter::Tick(float DeltaTime)
 		uw->set_bar_value_percent(myHPnum);
 	}
 
-	UGameplayStatics::ApplyDamage(this, 0.5f, NULL, this, UDamageType::StaticClass());
+	//DieUI 테스트를 위한 자해코드이나 계속 켜져있으면 다른 테스트에 방해가 되어서 주석처리했습니다.
+	//UGameplayStatics::ApplyDamage(this, 0.5f, NULL, this, UDamageType::StaticClass());
 }
 
 // Called to bind functionality to input

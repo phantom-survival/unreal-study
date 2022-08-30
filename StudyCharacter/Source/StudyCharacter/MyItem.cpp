@@ -1,27 +1,23 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "MyFirstActor.h"
+#include "MyItem.h"
 
 // Sets default values
-AMyFirstActor::AMyFirstActor()
+AMyItem::AMyItem()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
 }
 
 // Called when the game starts or when spawned
-void AMyFirstActor::BeginPlay()
+void AMyItem::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
-void AMyFirstActor::Tick(float DeltaTime)
+void AMyItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
-

@@ -18,8 +18,14 @@ public:
 	AController_StartMenu();
 
 	void ShowGameMenu();
+	void ShowInventory();
 	void WeaponAttack();
 	void ShowDieUI();
+	void CloseGameMenu();
+	void CloseInventory();	
+	
+	TSubclassOf<class UUserWidget>uiItemSlotBPClass;
+	UUserWidget* uiItemSlotWidget;
 
 protected:
 	void SetupInputComponent() override;
@@ -33,4 +39,7 @@ private:
 
 	TSubclassOf<class UUserWidget> uiGameDieBPClass;
 	UUserWidget* uiGameDieWidget;
+
+	TSubclassOf<class UUserWidget> uiGameInventoryBPClass;
+	UUserWidget* uiGameInventoryWidget;
 };

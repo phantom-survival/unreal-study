@@ -12,6 +12,10 @@ void UGameHUD_UI::NativeConstruct()
 	{
 		Btn_GameMenu->OnClicked.AddDynamic(this, &UGameHUD_UI::Btn_GameMenu_Clicked);
 	}
+	if (Btn_Inventory)
+	{
+		Btn_Inventory->OnClicked.AddDynamic(this, &UGameHUD_UI::Btn_Inventory_Clicked);
+	}
 	if (Btn_Attack)
 	{
 		Btn_Attack->OnClicked.AddDynamic(this, &UGameHUD_UI::Btn_Attack_Clicked);
@@ -27,6 +31,12 @@ void UGameHUD_UI::Btn_GameMenu_Clicked()
 {
 	AController_StartMenu* contoller = Cast<AController_StartMenu>(GetOwningPlayer());
 	contoller->ShowGameMenu();
+}
+
+void UGameHUD_UI::Btn_Inventory_Clicked()
+{
+	AController_StartMenu* contoller = Cast<AController_StartMenu>(GetOwningPlayer());
+	contoller->ShowInventory();
 }
 
 void UGameHUD_UI::Btn_Attack_Clicked()
